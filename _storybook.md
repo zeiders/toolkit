@@ -20,7 +20,8 @@
 
     This will start Storybook locally, typically opening it in a new browser window.  If it doesn't open automatically, the URL of the local site will be displayed in the console.
 
-### Example of changes to package.json 
+### Example of changes to package.json
+
 This is an example of how running `npx sb init` may modify `pacakges.json`
 
 ```diff
@@ -40,4 +41,3 @@ This is an example of how running `npx sb init` may modify `pacakges.json`
     }
 }
 ```
-
