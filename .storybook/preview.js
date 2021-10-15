@@ -6,4 +6,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  //  a11y: {
+  //    //element: '#root',
+  //    config: {},
+  //    options: {},
+  //  }
 }

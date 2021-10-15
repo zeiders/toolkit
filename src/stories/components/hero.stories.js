@@ -1,18 +1,45 @@
 import { html } from 'lit';
 import { unsafeHTML} from 'lit/directives/unsafe-html.js';
-import './hero.js';
 
-import heroImage1 from '../../stories/assets/hero_fall_quad.jpg';
-import heroImage2 from '../../stories/assets/hero_genomics.jpg';
-import heroImage3 from '../../stories/assets/hero_union.jpg';
+//import { withA11y } from '@storybook/addon-a11y';
 
+import '../../js/components/hero.js';
 
+import heroImage1 from '../assets/hero_fall_quad.jpg';
+import heroImage2 from '../assets/hero_genomics.jpg';
+import heroImage3 from '../assets/hero_union.jpg';
+
+// importing ./dist/toolkitCss 
+import '../../../dist/toolkit.css'
+// import '../../css/components.scss';
+/* 
+  Component expects:
+    var(--il-blue)
+    var(--il-orange)
+    var(--il-content-margin)
+    var(--il-content-max-width)
+*/
 
 export default {
     title: 'Components/il-hero',
+    decorators: [
+        (story) => html`
+            
+           
+
+            <style>
+            :root {
+                --il-orange: #ff552e;
+                --il-blue: #13294b;
+                --il-content-max-width: 1140px;
+                --il-content-margin: 30px;
+            }
+            </style>
+            ${story()}
+        `
+    ],
     argTypes: {
 
-        
         background: {
             name: 'background (demos)',
             description: 'URL of a hero image',
@@ -22,7 +49,7 @@ export default {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' },
               },
-            options: ['hero_fall_quad.jpg','hero_genomics.jpg','hero_union.jpg','custom URL'],
+            options: ['hero_fall_quad.jpg','hero_genomics.jpg','hero_union.jpg',''],
             control: {type: 'radio'}
         },
 
@@ -75,16 +102,7 @@ export default {
     }
   };
 
-/* 
-  Component expects:
 
-    var(--il-blue)
-    var(--il-orange)
-    var(--il-content-margin)
-    var(--il-content-max-width)
-
-
-*/
 
 
 const Template = ({ body, align, alt, background, color, duotone, backgroundURL }) => {
@@ -94,17 +112,6 @@ const Template = ({ body, align, alt, background, color, duotone, backgroundURL 
     if (background === 'hero_union.jpg') backgroundURL = heroImage3;
 
     return html`
-        <style>
-            :root {
-                --il-orange: #ff552e;
-                --il-blue: #13294b;
-                --il-content-max-width: 1140px;
-                --il-content-margin: 30px;
-            }
-        </style>
-
-        <div>Component Example</div>
-
         <il-hero 
             .alt=${alt} 
             .align=${align}
@@ -112,29 +119,68 @@ const Template = ({ body, align, alt, background, color, duotone, backgroundURL 
             .color=${color}
             ?duotone=${duotone}
         >${unsafeHTML(body)}</il-hero>
-
-        <pre>${JSON.stringify(arguments[0])}</pre>
     `;
 }
+
+const sampleHTMLBody = "<h1>Hero Header</h1>" 
+    + "<p>This is the body text of the Hero component.  Because it is rendered as a slot, HTML form the hosting page will be applied to the message body.</p>"
+    + "<ul><li><a href='#'>Action 1</a></li><li><a href='#'>Action 2</a></li></ul>"
+
 
 //👇 Each story then reuses that template
 export const Primary = Template.bind({});
 Primary.storyName = 'Primary';
 Primary.args = { 
-    body:"Hero Message",
+    body:sampleHTMLBody,
     align: '', 
     alt: 'image alt text', 
-    background: 'https://static.vecteezy.com/system/resources/previews/000/701/690/large_2x/abstract-polygonal-banner-background-vector.jpg',
-    color: 'red', 
+    color: 'blue', 
     duotone: false  
 };
 
-export const Secondary = () => html `
-    <div>Hero Indeed</div>
-    <img src=${heroImage1} />
-    <img src=${heroImage2} />
-    <img src=${heroImage3} />
+/* Orange:left */
+export const Hero4 = Template.bind({});
+Hero4.storyName = 'Hero Orange-Left';
+Hero4.args = {
+    ...Primary.args, 
+    backgroundURL: '',
+    color:'orange',
+    align:'left'
+    };
 
-    <il-hero>Hero Component</il-hero>
+/* Background Image */
+export const Hero2 = Template.bind({});
+Hero2.storyName = 'Hero with a background image';
+Hero2.args = {
+    ...Primary.args, 
+    backgroundURL: heroImage1
+    };
+
+/* Duotone */
+export const Hero3 = Template.bind({});
+Hero3.storyName = 'Hero with a background image and duotone';
+Hero3.args = {
+    ...Primary.args, 
+    backgroundURL: heroImage1,
+    duotone: true
+    };
+
+
+
+export const SampleImages = () => html `
+    <div style="display:flex;">
+    <div style="flex:1 1 33%">
+        <div>Fall Quad</div>
+        <img width="100%" src=${heroImage1} />
+        </div>
+    <div style="flex:1 1 33%">
+        <div>Genomics</div>
+        <img width="100%" src=${heroImage2} />
+        </div>
+    <div style="flex:1 1 33%">
+        <div>Union</div>
+        <img width="100%" src=${heroImage3} />
+        </div>
+    </div>
 `;
-Secondary.storyName = 'Secondary';
+SampleImages.storyName = 'Sample Images';
