@@ -9,9 +9,9 @@ import heroImage1 from '../assets/hero_fall_quad.jpg';
 import heroImage2 from '../assets/hero_genomics.jpg';
 import heroImage3 from '../assets/hero_union.jpg';
 
-// importing ./dist/toolkitCss 
-import '../../../dist/toolkit.css'
-// import '../../css/components.scss';
+// importing ./dist/toolkitCss  
+// import '../../../dist/toolkit.css';
+import '../../css/components.scss';
 /* 
   Component expects:
     var(--il-blue)
