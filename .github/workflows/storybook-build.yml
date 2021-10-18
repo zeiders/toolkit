@@ -13,14 +13,14 @@ jobs:
       uses: actions/checkout@v2.3.1
       with:
           persist-credentials: false
-    - name: Install and Build 🔧
-    - run: echo "building story book ${VERSION}"
-    - run: | # Install npm packages and build the Storybook files
+    - name: Install and Build 🔧 
+      run: | # Install npm packages and build the Storybook files
+          echo "building story book ${VERSION}"
           npm install
           npm run build-storybook
     - name: Deploy 🚀
-    - uses: JamesIves/github-pages-deploy-action@4.1.5
-    - with:
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
           repository-name: zeiders/webtools-storybook-pages
           # token: ${{ secrets.STORYBOOK_PUBLISHING_TOKEN }}
           branch: main # The branch the action should deploy to.
