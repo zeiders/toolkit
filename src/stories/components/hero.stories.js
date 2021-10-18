@@ -111,6 +111,8 @@ const Template = ({ body, align, alt, background, color, duotone, backgroundURL 
     if (background === 'hero_genomics.jpg') backgroundURL = heroImage2;
     if (background === 'hero_union.jpg') backgroundURL = heroImage3;
 
+    console.info(`rendering hero story, backgroundURL: '${backgroundURL}'`, arguments)
+
     return html`
         <il-hero 
             .alt=${alt} 
