@@ -1,5 +1,5 @@
-name: storybook-build
-on: workflow_dispatch
+name: Build and Deploy Storybook Workflow
+on: [workflow_dispatch]
 #on:
 #  push:
 #    paths: ["stories/**"]
