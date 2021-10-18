@@ -6,3 +6,4 @@ package-lock.json
 templates/_data/tests.json
 var
 yarn.lock
+storybook-static
