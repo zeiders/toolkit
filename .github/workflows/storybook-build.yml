@@ -22,7 +22,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
           repository-name: zeiders/webtools-storybook-pages
-          # token: ${{ secrets.STORYBOOK_PUBLISHING_TOKEN }}
+          token: ${{ secrets.STORYBOOK_PUBLISHING_TOKEN }}
           branch: main # The branch the action should deploy to.
           folder: storybook-static # The folder that the build-storybook script generates files.
           clean: true # Automatically remove deleted files from the deploy branch
